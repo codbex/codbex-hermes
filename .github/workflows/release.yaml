@@ -21,7 +21,7 @@ jobs:
       release-content: |
         ## codbex-hermes - ${{ inputs.release-version }}
   
-        Property Management Application
+        Customer Management Application
   
         ## Deployment
   
