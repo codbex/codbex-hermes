@@ -1,0 +1,22 @@
+name: Build - Application
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  application:
+    uses: codbex/codbex-infra/.github/workflows/application-build.yaml@main
+    with:
+      application-name: codbex-hermes
+      install-dependencies: true
+      dockerfile-location: application/
+    secrets: inherit
+  application-data-sample:
+    uses: codbex/codbex-infra/.github/workflows/application-build.yaml@main
+    with:
+      application-name: codbex-hermes-data-sample
+      install-dependencies: true
+      dockerfile-location: application-data-sample/
+    secrets: inherit

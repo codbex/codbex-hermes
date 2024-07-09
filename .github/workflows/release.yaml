@@ -1,0 +1,54 @@
+name: Release - Application
+
+on:
+  workflow_dispatch:
+    inputs:
+      release-version:
+        description: Release Version
+        required: true
+        default: 1.0.0
+
+run-name: 'version set to ${{ inputs.release-version }} for release'
+
+jobs:
+  application:
+    uses: codbex/codbex-infra/.github/workflows/application-release.yaml@main
+    with:
+      application-name: codbex-hermes
+      install-dependencies: true
+      dockerfile-location: application/
+      release-version: ${{ inputs.release-version }}
+      release-content: |
+        ## codbex-hermes - ${{ inputs.release-version }}
+  
+        Property Management Application
+  
+        ## Deployment
+  
+        ```
+        docker run --name codbex-hermes \
+        --rm -p 80:80 \
+        ghcr.io/codbex/codbex-hermes:${{ inputs.release-version }}
+        ```
+
+        ### Sample Data
+
+        ```
+        docker run --name codbex-hermes-data-sample \
+        --rm -p 80:80 \
+        ghcr.io/codbex/codbex-hermes-data-sample:${{ inputs.release-version }}
+        ```
+  
+        ## Access points:
+  
+        - [/services/web/codbex-hermes/gen/](http://localhost:80/services/web/codbex-hermes/gen/) - Admin Panel
+    secrets: inherit
+  application-data-sample:
+    uses: codbex/codbex-infra/.github/workflows/application-release.yaml@main
+    with:
+      application-name: codbex-hermes-data-sample
+      install-dependencies: true
+      dockerfile-location: application-data-sample/
+      release-version: ${{ inputs.release-version }}
+      release-create-branch: false
+    secrets: inherit
