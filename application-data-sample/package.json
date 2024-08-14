@@ -10,7 +10,7 @@
         "@codbex/codbex-hermes-data-sample": "0.1.0",
         "@codbex/codbex-opportunities": "0.1.0",
         "@codbex/codbex-opportunities-data": "0.1.0",
-        "@codbex/codbex-contracts": "0.1.0",
-        "@codbex/codbex-contracts-data": "0.1.0"
+        "@codbex/codbex-contracts": "0.1.1",
+        "@codbex/codbex-contracts-data": "0.1.1"
     }
 }
