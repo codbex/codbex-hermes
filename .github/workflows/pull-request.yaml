@@ -14,7 +14,7 @@ jobs:
       dockerfile-location: application/
     secrets: inherit
   application-data-sample:
-    uses: codbex/codbex-infra/.github/workflows/application-build.yaml@main
+    uses: codbex/codbex-infra/.github/workflows/application-pull-request.yaml@main
     with:
       application-name: codbex-hermes-data-sample
       install-dependencies: true
