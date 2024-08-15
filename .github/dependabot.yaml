@@ -5,6 +5,13 @@
 
 version: 2
 
+registries:
+  npm-github:
+    type: npm-registry
+    url: https://npm.pkg.github.com
+    token: ${{ secrets.GH_TOKEN }}
+    replaces-base: true
+
 updates:
 
   - package-ecosystem: docker
@@ -19,6 +26,8 @@ updates:
 
   - package-ecosystem: npm
     directory: "/application"
+    registries:
+      - npm-github
     schedule:
       interval: daily
     open-pull-requests-limit: 10
@@ -37,6 +46,8 @@ updates:
 
   - package-ecosystem: npm
     directory: "/application-data-sample"
+    registries:
+      - npm-github
     schedule:
       interval: daily
     open-pull-requests-limit: 10
