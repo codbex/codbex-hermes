@@ -4,7 +4,7 @@
     },
     "dependencies": {
         "@codbex/codbex-hermes": "0.1.2",
-        "@codbex/codbex-orders": "0.2.0",
+        "@codbex/codbex-orders": "0.4.0",
         "@codbex/codbex-orders-data": "0.2.0",
         "@codbex/ide-branding": "0.1.0",
         "@codbex/codbex-opportunities": "0.1.0",
