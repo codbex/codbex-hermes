@@ -20,3 +20,9 @@ jobs:
       install-dependencies: true
       dockerfile-location: application-data-sample/
     secrets: inherit
+  deploy:
+    needs: [application, application-data-sample]
+    uses: ./.github/workflows/deploy.yaml
+    with:
+      application-version: latest
+    secrets: inherit

@@ -1,21 +1,17 @@
 name: Deploy to Kubernetes
 
 on:
-  push:
-    branches:
-      - main
+  workflow_call:
+    inputs:
+      application-version:
+        type: string
+        default: latest
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          repository: codbex/codbex-cluster
-          token: ${{ secrets.GH_TOKEN }}
-
       - name: Set up Kubernetes
         uses: azure/setup-kubectl@v3
         with:
@@ -31,4 +27,6 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
-          kubectl apply -f deployments/hermes-dev.yaml
+          kubectl scale deployments/codbex-hermes --replicas=0 -n prod
+          kubectl set image deployment/codbex-hermes codbex-hermes=ghcr.io/codbex/codbex-hermes-data-sample:${{ inputs.application-version }} -n prod
+          kubectl scale deployments/codbex-hermes --replicas=1 -n prod
